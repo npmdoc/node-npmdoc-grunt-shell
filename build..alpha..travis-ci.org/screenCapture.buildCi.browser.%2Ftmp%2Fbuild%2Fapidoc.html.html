@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/sindresorhus/grunt-shell#readme"
-
-    >grunt-shell (v2.1.0)</a>
+    <a href="https://github.com/sindresorhus/grunt-shell#readme">grunt-shell (v2.1.0)</a>
 </h1>
 <h4>Run shell commands</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.grunt-shell">module grunt-shell</a><ol>
 
@@ -65,7 +58,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.grunt-shell.shell">
             function <span class="apidocSignatureSpan">grunt-shell.</span>shell
-            <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+            <span class="apidocSignatureSpan">('shell', 'Run shell commands', function ()</span>
             </a>
 
         </li>
@@ -78,7 +71,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.grunt-shell.shell.shell">
             function <span class="apidocSignatureSpan">grunt-shell.</span>shell
-            <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+            <span class="apidocSignatureSpan">('shell', 'Run shell commands', function ()</span>
             </a>
 
         </li>
@@ -94,12 +87,12 @@
     <h2>
         <a href="#apidoc.element.grunt-shell.shell" id="apidoc.element.grunt-shell.shell">
         function <span class="apidocSignatureSpan">grunt-shell.</span>shell
-        <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+        <span class="apidocSignatureSpan">('shell', 'Run shell commands', function ()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">grunt =&#x3e; {
-	grunt.registerMultiTask(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function () {
+    <li>description and source-code<pre class="apidocCodePre">grunt =&gt; {
+	grunt.registerMultiTask('shell', 'Run shell commands', function () {
 		const cb = this.async();
 		const opts = this.options({
 			stdout: true,
@@ -113,17 +106,17 @@
 			}
 		});
 
-		let cmd = typeof this.data === &#x27;string&#x27; ? this.data : this.data.command;
+		let cmd = typeof this.data === 'string' ? this.data : this.data.command;
 
 		if (cmd === undefined) {
-			throw new Error(&#x27;`command` required&#x27;);
+			throw new Error('`command` required');
 		}
 
 		// increase max buffer
 		opts.execOptions = Object.assign({}, opts.execOptions);
 		opts.execOptions.maxBuffer = opts.execOptions.maxBuffer || TEN_MEGABYTES;
 
-		cmd = grunt.template.process(typeof cmd === &#x27;function&#x27; ? cmd.apply(grunt, arguments) : cmd);
+		cmd = grunt.template.process(typeof cmd === 'function' ? cmd.apply(grunt, arguments) : cmd);
 
 		if (opts.preferLocal === true) {
 			opts.execOptions.env = npmRunPath.env({env: opts.execOptions.env || process.env});
@@ -133,20 +126,20 @@
 			opts.execOptions.cwd = this.data.cwd;
 		}
 
-		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&#x3e; {
-			if (typeof opts.callback === &#x27;function&#x27;) {
+		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&gt; {
+			if (typeof opts.callback === 'function') {
 				opts.callback.call(this, err, stdout, stderr, cb);
 			} else {
-				if (err &#x26;&#x26; opts.failOnError) {
+				if (err &amp;&amp; opts.failOnError) {
 					grunt.warn(err);
 				}
 				cb();
 			}
 		});
 
-		const captureOutput = (child, output) =&#x3e; {
-			if (grunt.option(&#x27;color&#x27;) === false) {
-				child.on(&#x27;data&#x27;, data =&#x3e; {
+		const captureOutput = (child, output) =&gt; {
+			if (grunt.option('color') === false) {
+				child.on('data', data =&gt; {
 					output.write(chalk.stripColor(data));
 				});
 			} else {
@@ -154,21 +147,21 @@
 			}
 		};
 
-		grunt.verbose.writeln(&#x27;Command:&#x27;, chalk.yellow(cmd));
+		grunt.verbose.writeln('Command:', chalk.yellow(cmd));
 
-		if (opts.stdout || grunt.option(&#x27;verbose&#x27;)) {
+		if (opts.stdout || grunt.option('verbose')) {
 			captureOutput(cp.stdout, process.stdout);
 		}
 
-		if (opts.stderr || grunt.option(&#x27;verbose&#x27;)) {
+		if (opts.stderr || grunt.option('verbose')) {
 			captureOutput(cp.stderr, process.stderr);
 		}
 
 		if (opts.stdin) {
 			process.stdin.resume();
-			process.stdin.setEncoding(&#x27;utf8&#x27;);
+			process.stdin.setEncoding('utf8');
 
-			if (opts.stdinRawMode &#x26;&#x26; process.stdin.isTTY) {
+			if (opts.stdinRawMode &amp;&amp; process.stdin.isTTY) {
 				process.stdin.setRawMode(true);
 			}
 
@@ -189,12 +182,12 @@
     <h2>
         <a href="#apidoc.element.grunt-shell.shell.shell" id="apidoc.element.grunt-shell.shell.shell">
         function <span class="apidocSignatureSpan">grunt-shell.</span>shell
-        <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+        <span class="apidocSignatureSpan">('shell', 'Run shell commands', function ()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">grunt =&#x3e; {
-	grunt.registerMultiTask(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function () {
+    <li>description and source-code<pre class="apidocCodePre">grunt =&gt; {
+	grunt.registerMultiTask('shell', 'Run shell commands', function () {
 		const cb = this.async();
 		const opts = this.options({
 			stdout: true,
@@ -208,17 +201,17 @@
 			}
 		});
 
-		let cmd = typeof this.data === &#x27;string&#x27; ? this.data : this.data.command;
+		let cmd = typeof this.data === 'string' ? this.data : this.data.command;
 
 		if (cmd === undefined) {
-			throw new Error(&#x27;`command` required&#x27;);
+			throw new Error('`command` required');
 		}
 
 		// increase max buffer
 		opts.execOptions = Object.assign({}, opts.execOptions);
 		opts.execOptions.maxBuffer = opts.execOptions.maxBuffer || TEN_MEGABYTES;
 
-		cmd = grunt.template.process(typeof cmd === &#x27;function&#x27; ? cmd.apply(grunt, arguments) : cmd);
+		cmd = grunt.template.process(typeof cmd === 'function' ? cmd.apply(grunt, arguments) : cmd);
 
 		if (opts.preferLocal === true) {
 			opts.execOptions.env = npmRunPath.env({env: opts.execOptions.env || process.env});
@@ -228,20 +221,20 @@
 			opts.execOptions.cwd = this.data.cwd;
 		}
 
-		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&#x3e; {
-			if (typeof opts.callback === &#x27;function&#x27;) {
+		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&gt; {
+			if (typeof opts.callback === 'function') {
 				opts.callback.call(this, err, stdout, stderr, cb);
 			} else {
-				if (err &#x26;&#x26; opts.failOnError) {
+				if (err &amp;&amp; opts.failOnError) {
 					grunt.warn(err);
 				}
 				cb();
 			}
 		});
 
-		const captureOutput = (child, output) =&#x3e; {
-			if (grunt.option(&#x27;color&#x27;) === false) {
-				child.on(&#x27;data&#x27;, data =&#x3e; {
+		const captureOutput = (child, output) =&gt; {
+			if (grunt.option('color') === false) {
+				child.on('data', data =&gt; {
 					output.write(chalk.stripColor(data));
 				});
 			} else {
@@ -249,21 +242,21 @@
 			}
 		};
 
-		grunt.verbose.writeln(&#x27;Command:&#x27;, chalk.yellow(cmd));
+		grunt.verbose.writeln('Command:', chalk.yellow(cmd));
 
-		if (opts.stdout || grunt.option(&#x27;verbose&#x27;)) {
+		if (opts.stdout || grunt.option('verbose')) {
 			captureOutput(cp.stdout, process.stdout);
 		}
 
-		if (opts.stderr || grunt.option(&#x27;verbose&#x27;)) {
+		if (opts.stderr || grunt.option('verbose')) {
 			captureOutput(cp.stderr, process.stderr);
 		}
 
 		if (opts.stdin) {
 			process.stdin.resume();
-			process.stdin.setEncoding(&#x27;utf8&#x27;);
+			process.stdin.setEncoding('utf8');
 
-			if (opts.stdinRawMode &#x26;&#x26; process.stdin.isTTY) {
+			if (opts.stdinRawMode &amp;&amp; process.stdin.isTTY) {
 				process.stdin.setRawMode(true);
 			}
 
@@ -283,3 +276,4 @@
     ]
 </div>
 </div>
+</body></html>

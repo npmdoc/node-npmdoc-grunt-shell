@@ -61,12 +61,219 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.grunt-shell">module grunt-shell</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-shell.shell">
+            function <span class="apidocSignatureSpan">grunt-shell.</span>shell
+            <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-shell.shell">module grunt-shell.shell</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-shell.shell.shell">
+            function <span class="apidocSignatureSpan">grunt-shell.</span>shell
+            <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.grunt-shell" id="apidoc.module.grunt-shell">module grunt-shell</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-shell.shell" id="apidoc.element.grunt-shell.shell">
+        function <span class="apidocSignatureSpan">grunt-shell.</span>shell
+        <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt =&#x3e; {
+	grunt.registerMultiTask(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function () {
+		const cb = this.async();
+		const opts = this.options({
+			stdout: true,
+			stderr: true,
+			stdin: true,
+			failOnError: true,
+			stdinRawMode: false,
+			preferLocal: true,
+			execOptions: {
+				env: null
+			}
+		});
+
+		let cmd = typeof this.data === &#x27;string&#x27; ? this.data : this.data.command;
+
+		if (cmd === undefined) {
+			throw new Error(&#x27;`command` required&#x27;);
+		}
+
+		// increase max buffer
+		opts.execOptions = Object.assign({}, opts.execOptions);
+		opts.execOptions.maxBuffer = opts.execOptions.maxBuffer || TEN_MEGABYTES;
+
+		cmd = grunt.template.process(typeof cmd === &#x27;function&#x27; ? cmd.apply(grunt, arguments) : cmd);
+
+		if (opts.preferLocal === true) {
+			opts.execOptions.env = npmRunPath.env({env: opts.execOptions.env || process.env});
+		}
+
+		if (this.data.cwd) {
+			opts.execOptions.cwd = this.data.cwd;
+		}
+
+		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&#x3e; {
+			if (typeof opts.callback === &#x27;function&#x27;) {
+				opts.callback.call(this, err, stdout, stderr, cb);
+			} else {
+				if (err &#x26;&#x26; opts.failOnError) {
+					grunt.warn(err);
+				}
+				cb();
+			}
+		});
+
+		const captureOutput = (child, output) =&#x3e; {
+			if (grunt.option(&#x27;color&#x27;) === false) {
+				child.on(&#x27;data&#x27;, data =&#x3e; {
+					output.write(chalk.stripColor(data));
+				});
+			} else {
+				child.pipe(output);
+			}
+		};
+
+		grunt.verbose.writeln(&#x27;Command:&#x27;, chalk.yellow(cmd));
+
+		if (opts.stdout || grunt.option(&#x27;verbose&#x27;)) {
+			captureOutput(cp.stdout, process.stdout);
+		}
+
+		if (opts.stderr || grunt.option(&#x27;verbose&#x27;)) {
+			captureOutput(cp.stderr, process.stderr);
+		}
+
+		if (opts.stdin) {
+			process.stdin.resume();
+			process.stdin.setEncoding(&#x27;utf8&#x27;);
+
+			if (opts.stdinRawMode &#x26;&#x26; process.stdin.isTTY) {
+				process.stdin.setRawMode(true);
+			}
+
+			process.stdin.pipe(cp.stdin);
+		}
+	});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-shell.shell" id="apidoc.module.grunt-shell.shell">module grunt-shell.shell</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-shell.shell.shell" id="apidoc.element.grunt-shell.shell.shell">
+        function <span class="apidocSignatureSpan">grunt-shell.</span>shell
+        <span class="apidocSignatureSpan">(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function ()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">grunt =&#x3e; {
+	grunt.registerMultiTask(&#x27;shell&#x27;, &#x27;Run shell commands&#x27;, function () {
+		const cb = this.async();
+		const opts = this.options({
+			stdout: true,
+			stderr: true,
+			stdin: true,
+			failOnError: true,
+			stdinRawMode: false,
+			preferLocal: true,
+			execOptions: {
+				env: null
+			}
+		});
+
+		let cmd = typeof this.data === &#x27;string&#x27; ? this.data : this.data.command;
+
+		if (cmd === undefined) {
+			throw new Error(&#x27;`command` required&#x27;);
+		}
+
+		// increase max buffer
+		opts.execOptions = Object.assign({}, opts.execOptions);
+		opts.execOptions.maxBuffer = opts.execOptions.maxBuffer || TEN_MEGABYTES;
+
+		cmd = grunt.template.process(typeof cmd === &#x27;function&#x27; ? cmd.apply(grunt, arguments) : cmd);
+
+		if (opts.preferLocal === true) {
+			opts.execOptions.env = npmRunPath.env({env: opts.execOptions.env || process.env});
+		}
+
+		if (this.data.cwd) {
+			opts.execOptions.cwd = this.data.cwd;
+		}
+
+		const cp = exec(cmd, opts.execOptions, (err, stdout, stderr) =&#x3e; {
+			if (typeof opts.callback === &#x27;function&#x27;) {
+				opts.callback.call(this, err, stdout, stderr, cb);
+			} else {
+				if (err &#x26;&#x26; opts.failOnError) {
+					grunt.warn(err);
+				}
+				cb();
+			}
+		});
+
+		const captureOutput = (child, output) =&#x3e; {
+			if (grunt.option(&#x27;color&#x27;) === false) {
+				child.on(&#x27;data&#x27;, data =&#x3e; {
+					output.write(chalk.stripColor(data));
+				});
+			} else {
+				child.pipe(output);
+			}
+		};
+
+		grunt.verbose.writeln(&#x27;Command:&#x27;, chalk.yellow(cmd));
+
+		if (opts.stdout || grunt.option(&#x27;verbose&#x27;)) {
+			captureOutput(cp.stdout, process.stdout);
+		}
+
+		if (opts.stderr || grunt.option(&#x27;verbose&#x27;)) {
+			captureOutput(cp.stderr, process.stderr);
+		}
+
+		if (opts.stdin) {
+			process.stdin.resume();
+			process.stdin.setEncoding(&#x27;utf8&#x27;);
+
+			if (opts.stdinRawMode &#x26;&#x26; process.stdin.isTTY) {
+				process.stdin.setRawMode(true);
+			}
+
+			process.stdin.pipe(cp.stdin);
+		}
+	});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
