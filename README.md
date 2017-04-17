@@ -1,9 +1,11 @@
 # api documentation for  [grunt-shell (v2.1.0)](https://github.com/sindresorhus/grunt-shell#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-shell.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-shell) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-shell.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-shell)
 #### Run shell commands
 
-[![NPM](https://nodei.co/npm/grunt-shell.png?downloads=true)](https://www.npmjs.com/package/grunt-shell)
+[![NPM](https://nodei.co/npm/grunt-shell.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/grunt-shell)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-grunt-shell_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-grunt-shell/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-grunt-shell/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +20,6 @@
 {
     "author": {
         "name": "Sindre Sorhus",
-        "email": "sindresorhus@gmail.com",
         "url": "sindresorhus.com"
     },
     "bugs": {
@@ -61,8 +62,7 @@
     "license": "MIT",
     "maintainers": [
         {
-            "name": "sindresorhus",
-            "email": "sindresorhus@gmail.com"
+            "name": "sindresorhus"
         }
     ],
     "name": "grunt-shell",
@@ -70,7 +70,6 @@
     "peerDependencies": {
         "grunt": ">=0.4.0"
     },
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sindresorhus/grunt-shell.git"
@@ -84,16 +83,6 @@
     }
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module grunt-shell](#apidoc.module.grunt-shell)
-
-
-
-# <a name="apidoc.module.grunt-shell"></a>[module grunt-shell](#apidoc.module.grunt-shell)
 
 
 
