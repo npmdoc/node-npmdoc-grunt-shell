@@ -1,4 +1,7 @@
-# api documentation for  [grunt-shell (v2.1.0)](https://github.com/sindresorhus/grunt-shell#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-shell.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-shell) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-shell.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-shell)
+# npmdoc-grunt-shell
+
+#### basic api documentation for  [grunt-shell (v2.1.0)](https://github.com/sindresorhus/grunt-shell#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-shell.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-shell) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-shell.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-shell)
+
 #### Run shell commands
 
 [![NPM](https://nodei.co/npm/grunt-shell.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/grunt-shell)
@@ -80,7 +83,8 @@
     "version": "2.1.0",
     "xo": {
         "esnext": true
-    }
+    },
+    "bin": {}
 }
 ```
 
